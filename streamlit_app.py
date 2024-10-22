@@ -14,7 +14,7 @@ st.write(
 
 
 name_on_order = st.text_input("Name of Smoothie:")
-st.write("The name on your Smothiee will be:", name_on_order)
+# st.write("The name on your Smothiee will be:", name_on_order)
 
 
 cnx = st.connection("snowflake")
@@ -46,11 +46,11 @@ if ingredients_list:
    my_insert_stmt = """ insert into smoothies.public.orders(ingredients)
             values ('""" + ingredients_string + """','"""+name_on_order+"""')"""
 
-   st.write(my_insert_stmt)
-   st.stop() 
+   # st.write(my_insert_stmt)
+   # st.stop() 
    time_to_insert = st.button('Submit order')
    if time_to_insert:
-    session.sql(my_insert_stmt).collect()
+       session.sql(my_insert_stmt).collect()
        
     st.success('Your Smoothie is ordered!', icon="✅")
 
