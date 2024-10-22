@@ -20,7 +20,7 @@ name_on_order = st.text_input("Name of Smoothie:")
 cnx = st.connection("snowflake")
 session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
-editable_df = st.data_editor(my_dataframe)
+# editable_df = st.data_editor(my_dataframe)
 
 submitted = st.button('submit')
 
@@ -39,7 +39,7 @@ if ingredients_list:
    ingredients_string=''
    
    for fruit_chosen in ingredients_list:
-      ingredients_string += fruit_chosen + ' '
+       ingredients_string += fruit_chosen + ' '
 
    #st.write(ingredients_string)
 
