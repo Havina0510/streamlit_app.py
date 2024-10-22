@@ -24,8 +24,8 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT
 
 submitted = st.button('submit')
 
-if submitted:
-    st.success('Someone clicked the button', icon = '👍')
+# if submitted:
+#     st.success('Someone clicked the button', icon = '👍')
 
 #st.dataframe(data=my_dataframe, use_container_width=True)
 
@@ -55,7 +55,7 @@ if ingredients_list:
 
 import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-st.text(fruityvice_response.json())
+st.text(fruityvice_response)
 
  
 
