@@ -53,10 +53,34 @@ if ingredients_list:
        session.sql(my_insert_stmt).collect()
        st.success('Your Smoothie is ordered!', icon="✅")
 
-import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit")
+#import requests
+#fruityvice_response = requests.get("https://fruityvice.com/api/fruit")
 # st.text(fruityvice_response.json())
-fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
+#fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
+
+import requests
+import streamlit as st
+
+# Make the request to the Fruityvice API
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit")
+
+# Check if the response was successful (status code 200) and if the content is JSON
+if fruityvice_response.status_code == 200:
+    try:
+        # Parse the JSON response
+        data = fruityvice_response.json()
+        
+        # Display the dataframe in Streamlit
+        fv_df = st.dataframe(data, use_container_width=True)
+    except requests.exceptions.JSONDecodeError:
+        # Handle JSON parsing errors
+        st.error("Error: Unable to decode JSON from the response.")
+        st.write(f"Raw response: {fruityvice_response.content}")
+else:
+    # Handle HTTP errors
+    st.error(f"Error: Received status code {fruityvice_response.status_code}")
+    st.write(f"Raw response: {fruityvice_response.content}")
+
 
 
  
